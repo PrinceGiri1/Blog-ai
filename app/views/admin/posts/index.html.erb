@@ -1,0 +1,57 @@
+<div id="content">
+  <header class="clearfix">
+    <h2 class="page_title pull-left">All Posts</h2>
+    <%=link_to "Create New Post", new_admin_post_path, class:"btn btn-xs btn-primary pull-right" %><br>
+  </header>
+
+  <div class="content-inner">
+    <div class="row search-row">
+    	<div class="col-md-12">
+    		<div class="input-group">
+    			<input type="text" class="form-control search-field" id="search" placeholder="Search">
+    			<span class="input-group-btn">
+    				<button type="button" class="btn btn-primary go">Go!</button>
+    			</span>
+    		</div>
+    	</div>
+    </div>
+    <%@posts.each do |post|%>
+    <div class="row article-row">
+    	<div class="col-xs-2 col-sm-1 col-md-1 status-padding">
+    		<span class="label label-success label-sm">Active</span>
+    	</div>
+
+    	<div class="col-xs-10 col-sm-6 col-md-8 article-title">
+    		<p><%=post.title%></p>
+    		<small><%=post.created_at.strftime("%e %B %Y") %></small>
+    	</div>
+
+    	<div class="col-xs-10 col-sm-5 col-md-3 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+    		<div class="article-actions">
+          <%=link_to admin_post_path(post) do%>
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true">&nbsp;View</span>
+          <%end%>
+          <%=link_to edit_admin_post_path(post) do%>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;Edit</span>
+          <%end%>
+          <%=link_to admin_post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do%>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;Delete</span>
+          <%end%>
+
+
+
+    		</div>
+    	</div>
+    </div>
+    <%end%>
+    <hr>
+    <%= will_paginate @posts %>
+  </div>
+</div>
+
+<div class="row">
+  <footer id="admin-footer" class="clearfix">
+    <div class="pull-left"><b>Copyright </b>&copy; 2022</div>
+    <div class="pull-right">admin system</div>
+  </footer>
+</div>

@@ -1,0 +1,13 @@
+<h1>Message Table</h1>
+<p>
+ <% @messages.each do |message|%>
+  Full Name:  <%=message.full_name%><br>
+    Email:    <%=message.email%><br>
+    Message:  <%=message.content%><br>
+    <%=link_to "Show",admin_message_path(message)%>
+    <%=link_to "Edit",edit_admin_message_path(message)%>
+    <%= link_to "Delete", admin_message_path(message), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %><br>
+</p>
+  <%end%><br>
+
+<%= will_paginate @message %>

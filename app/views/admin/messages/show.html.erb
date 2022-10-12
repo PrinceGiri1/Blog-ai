@@ -1,0 +1,7 @@
+<h1>Details of Message</h1>
+<p>
+Name:  <%= @message.full_name%><br>
+Email:  <%= @message.email%><br>
+Message: <%= @message.content %><br>
+Created at: <%= time_ago(@message.created_at)%>
+</p>

@@ -1,0 +1,27 @@
+<h1>User Table</h1>
+<table id="table">
+  <tr>
+    <th>Avtar</th>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Created at</th>
+    <th>Action</th>
+   </tr>
+   <tr>
+   <% @users.each do |user|%>
+    <td> <% if user.avatar? %>
+             <%= image_tag user.avatar_url, width: 60 %>
+         <% end %>
+    </td>
+    <td><%=user.full_name%></td>
+    <td><%=user.email%></td>
+    <td><%=time_ago(user.created_at)%></td>
+    <td><%=link_to "Show",admin_user_path(user)%>
+    <%=link_to "Edit",edit_admin_user_path(user)%>
+   </td>
+
+
+   </tr>
+   <%end%>
+</table>
+<%= will_paginate @users %>

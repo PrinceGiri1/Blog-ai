@@ -1,0 +1,6 @@
+<%= form_for ([:admin, @tag]) do |f|%>
+  <%= render :partial => "layouts/validations", :locals => { :object => @tag } %>
+  <%= f.label :name %>
+  <%= f.text_area :name %><br>
+  <%= f.submit %>
+<% end %>

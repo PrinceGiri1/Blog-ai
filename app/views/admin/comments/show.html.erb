@@ -1,0 +1,7 @@
+<h1>Details of comment</h1>
+<p>
+Name:  <%= @comment.full_name%><br>
+Email:  <%= @comment.email%><br>
+Message: <%= @comment.message %><br>
+Created at: <%= time_ago(@comment.created_at)%>
+</p>

@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <article>
+        <h1><b><%= @post.title%></b></h1>
+        <div class="lead"><%= @post.content%></div>
+      </article>
+
+      <div id="comments">
+        <h2>Comments</h2>
+        <div class="row">
+          <div class="col-md-11">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+            </p>
+            <footer>
+              <small><b>Kingsley Ijomah</b> Commented on: 8 Jan 2015</small>
+            </footer>
+            <hr>
+          </div>
+          <div class="col-md-1 comment-num">01</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<h1>Details of Post</h1>
+<#%= image_tag @post.thumbnail.url  %><br>
+Title:    <%= @post.title%><br>
+Introduction: <%=@post.intro%><br>
+Content:  <%= @post.content%><br>
+Publish : <%= publish_status_conversion(@post.is_publish)%><br>
+Title Name : <%@tag_id.each do |t|%>
+              <span class="one"> <%=Tag.find(t).name%>,</span>
+             <% end %>
+<hr>
+<%=link_to "Back", admin_posts_path%>

@@ -1,0 +1,15 @@
+<h1> Notification </h1>
+  <% @notifications.each do |notification| %>
+    <p>
+    <% if notification.notifiable_type == "Comment" %>
+      <%=link_to admin_comment_path(notification.notifiable) do%>
+        <b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b>
+      <% end %>
+    <% else %>
+      <%=link_to admin_message_path(notification.notifiable) do%>
+        <b><%= notification.notifiable.full_name %></b> message <b><%= time_ago(notification.notifiable.created_at)%></b>
+      <%end%>
+    <% end %>
+    </p>
+  <% end %>
+<%= will_paginate @notifications %>

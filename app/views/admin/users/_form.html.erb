@@ -1,0 +1,12 @@
+<%= form_for ([:admin, @user]) do |f| %>
+
+  <%= render :partial => "layouts/validations", :locals => { :object => @user } %>
+  First name: <%= f.text_field :first_name %><br />
+  Last name : <%= f.text_field :last_name %><br />
+  About     : <%= f.text_area :about, :class => "tinymce", :rows => 10, :cols => 80 %><br />
+  Email     : <%= f.email_field :email%><br />
+  Password  : <%= f.password_field :password%><br />
+  Add Avatar : <%= f.file_field  :avatar %>
+
+  <%= f.submit %>
+<% end %>

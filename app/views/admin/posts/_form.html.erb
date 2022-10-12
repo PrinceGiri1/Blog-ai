@@ -1,0 +1,46 @@
+<div id="content">
+    <header>
+      <h2 class="page_title">Create new Post</h2>
+    </header>
+
+    <div class="content-inner">
+      <div class="form-wrapper">
+
+        <%= form_for ([:admin, @post]) do |f| %>
+          <div class="form-group">
+            <%= render :partial => "layouts/validations", :locals => { :object => @post } %>
+          </div>
+          <div class="form-group">
+            <%= f.label :title%>
+            <%= f.text_field :title, class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <%= f.label :Tag%>
+            <%= select_tag "people", options_from_collection_for_select(Tag.all, "id", "name"),:multiple => true, class:"form-control chosen-select" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Content, class:""%>
+            <%= f.text_area :content, :class => "tinymce", :rows => 10, :cols => 50, placeholder: "Content" %>
+          </div>
+          <div class="checkbox">
+            <%= f.label :is_publish %>
+            <%= f.label :is_publish, "Yes", value: "true"  %>
+            <%= f.radio_button :is_publish, true %>
+            <%= f.label :is_publish, "No", value: "false"  %>
+            <%= f.radio_button :is_publish, false %>
+          </div>
+          <div class="clearfix">
+            <%= f.submit class:"btn btn-primary pull-right" %>
+          </div>
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <footer id="admin-footer" class="clearfix">
+      <div class="pull-left"><b>Copyright </b>&copy; 2022</div>
+      <div class="pull-right">admin administration page</div>
+    </footer>
+</div>
