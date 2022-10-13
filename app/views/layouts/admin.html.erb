@@ -125,15 +125,20 @@ crossorigin="anonymous"></script>
               <ul class="pull-right">
                 <li id="welcome" class="hidden-xs">Welcome to your administration area</li>
                 <li class="fixed-width dropdown">
+
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                     <span class="label label-warning"><%=Notification.count%></span>
                     <ul class="dropdown-menu notif-menu">
-                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
-                      <li><a href="#"><b>John Doe</b> sent a message <b>2 hours ago</b></a></li>
-                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
+                      <% @notifications&.each do |notification| %>
+                        <% if notification.notifiable_type == "Comment" %>  
+                            <li><a href="#"><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b></a></li>
+                        <%else%>
+                          <li><a href="#"><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b></a></li>
+                        <%end%>
+                      <%end%>  
                       <div class="see-all-block">
-                        <%=link_to "See all", "#"%>
+                        <%=link_to "See all",admin_notifications_path%>
                       </div>
                     </ul>
                   </a>
@@ -142,6 +147,7 @@ crossorigin="anonymous"></script>
                 <li class="fixed-width">
                   <a href="#">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span class="label label-message">3</span>
                   </a>
                 </li>
                 <li>
