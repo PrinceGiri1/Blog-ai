@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require admin/admin_styles
- *= require admin/default.css
- *= require admin/home.css
+ *= require admin/default
+ *= require admin/home
 
  */
