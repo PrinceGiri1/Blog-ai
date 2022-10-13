@@ -27,10 +27,11 @@
           				<h3>Under maintenance</h3>
           				<p>Redirect all requests to a a holding page.</p>
           				<div class="checkbox">
-          					<label>
-          						<input type="checkbox" value="true">
-          						blog is under maintenance
-          					</label>
+          					<%= f.label :blog_is_under_maintenance %>
+                    <%= f.label :if_maintenance, "Yes", value: "true"  %>
+                    <%= f.radio_button :if_maintenance, true %>
+                    <%= f.label :if_maintenance, "No", value: "false"  %>
+                    <%= f.radio_button :if_maintenance, false %>
           				</div>
           			</div>
           			<%= f.submit class:"btn btn-primary pull-right" %>

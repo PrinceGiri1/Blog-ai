@@ -121,21 +121,27 @@ crossorigin="anonymous"></script>
               </nav>
               <input type="text" class="hidden-sm hidden-xs" id="header-search-field" placeholder="Search for something...">
             </div>
-
             <div class="col-md-7">
               <ul class="pull-right">
                 <li id="welcome" class="hidden-xs">Welcome to your administration area</li>
-                <li class="fixed-width">
-                  <a href="#">
+                <li class="fixed-width dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                     <span class="label label-warning"><%=Notification.count%></span>
+                    <ul class="dropdown-menu notif-menu">
+                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
+                      <li><a href="#"><b>John Doe</b> sent a message <b>2 hours ago</b></a></li>
+                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
+                      <div class="see-all-block">
+                        <%=link_to "See all", "#"%>
+                      </div>
+                    </ul>
                   </a>
                 </li>
 
                 <li class="fixed-width">
                   <a href="#">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <span class="label label-message">3</span>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                   </a>
                 </li>
                 <li>
