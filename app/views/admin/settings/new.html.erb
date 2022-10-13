@@ -1,0 +1,51 @@
+<div id="content">
+        <header class="clearfix">
+          <h2 class="page_title">General blog settings</h2>
+        </header>
+
+        <div class="content-inner">
+          <div class="row">
+          	<div class="col-md-6">
+          		<%= form_for ([:admin, @setting]) do |f| %>
+          			<div class="settings-row">
+          				<h3>Site name</h3>
+          				<p>This is permanently shown on the top left corner of navigation</p>
+          				<div class="form-group">
+          					<%= f.text_field :blog_name, class: "form-control"%>
+          				</div>
+          			</div>
+
+          			<div class="settings-row">
+          				<h3>Posts per page</h3>
+          				<p>Control total number of blogs shown on the blog index page.</p>
+          				<div class="form-group">
+          					<%= f.number_field :post_per_page, class:"form-control small-input"%>
+          				</div>
+          			</div>
+
+          			<div class="settings-row">
+          				<h3>Under maintenance</h3>
+          				<p>Redirect all requests to a a holding page.</p>
+          				<div class="checkbox">
+          					<label>
+          						<input type="checkbox" value="true">
+          						blog is under maintenance
+          					</label>
+          				</div>
+          			</div>
+          			<%= f.submit class:"btn btn-primary pull-right" %>
+          		<%end%>
+          	</div>
+          </div>
+        </div>
+
+      <div class="row">
+        <footer id="admin-footer" class="clearfix">
+          <div class="pull-left"><b>Copyright </b>&copy; 2022</div>
+          <div class="pull-right">admin system</div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+

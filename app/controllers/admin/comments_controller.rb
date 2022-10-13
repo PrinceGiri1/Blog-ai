@@ -1,6 +1,6 @@
 class Admin::CommentsController < Admin::ApplicationController
   def index
-    @comments = Comment.all.paginate(page: params[:page], per_page: 2).order(id: :desc)
+    @comments = Comment.all.paginate(page: params[:page], per_page: 5).order(id: :desc)
   end
   def show
     @comment = Comment.find(params[:id])
@@ -10,6 +10,13 @@ class Admin::CommentsController < Admin::ApplicationController
     @comment.destroy
     redirect_to admin_comment_path
   end
+  def publish
+    @comments = Comment.where(status:true).order(id: :desc)
+  end
+  def pending
+    @comments = Comment.where(status:false).order(id: :desc)
+  end
+
   def approve
 		@approve=Comment.find(params[:id])
     @approve.update(status: true)

@@ -1,6 +1,6 @@
 <div id="dashboard-con">
   <div class="row">
-    <div class="col-md-6 dashboard-left-cell">
+    <div class="col-md-12 dashboard-left-cell">
       <div class="admin-content-con">
         <header class="clearfix">
           <h5 class="pull-left">Post</h5>
@@ -10,9 +10,9 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>title</th>
-              <th>date</th>
-              <th>actions</th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -28,38 +28,11 @@
           </tbody>
         </table>
         <div class="clearfix">
-          <a href="#" class="pull-right text-link">view all post</a>
+          <%= link_to "View all Post", admin_posts_path, class:"pull-right text-link"%> 
         </div>
       </div>
     </div>
-
-    <div class="col-md-6 dashboard-right-cell">
-      <div class="admin-content-con">
-        <header>
-          <h5>Comments</h5>
-        </header>
-        <% @comments.each do |comment| %>
-        <div class="comment-head-dash clearfix">
-          <b><%= comment.full_name %></b>
-          <div class="days-dash pull-right"><%= time_ago(comment.created_at)%></div>
-        </div>
-        <p class="comment-dash">
-          <%= comment.message %>
-        </p>
-        <small class="comment-date-dash"></small>
-        <% end %>
-
-
-        <hr>
-
-        <div class="clearfix">
-          <a href="#" class="pull-right text-link">view all comments</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
+    <div class="row">
     <div class="col-md-12">
       <div class="admin-content-con clearfix">
         <header>
@@ -69,7 +42,6 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>#</th>
               <th>Full Name</th>
               <th>Email</th>
               <th>Status</th>
@@ -80,48 +52,29 @@
 
           <tbody>
             <tr>
-              <td>1</td>
-              <td>Kingsley Ijomah</td>
-              <td>kingsley.ijomah@example.com</td>
-              <td><a href="#" class="label label-default">pending</a></td>
-              <td>Today 5:60pm - 14/09/2015</td>
-              <td><a href="#" class="label label-danger">Delete</a></td>
+            <%@comments.each do |comment|%>  
+              <td><%= comment.full_name%></td>
+              <td><%= comment.email%></td>
+              <td><%if comment.status?%>
+                    <span class="label label-success">
+                    <%= publish_status_conversion(comment.status)%>
+                  <%else%>
+                    <span class="label label-warning">
+                    <%= publish_status_conversion(comment.status)%>
+                  <%end%> </td>
+              <td><%=comment.created_at.strftime("%A %I:%M%P - %d/%m/%Y")%></td>
+              <td><%= link_to "Delete", admin_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-xs btn-danger" %></td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Kingsley Ijomah</td>
-              <td>kingsley.ijomah@example.com</td>
-              <td><a href="#" class="label label-success">active</a></td>
-              <td>Today 5:60pm - 14/09/2015</td>
-              <td><a href="#" class="label label-danger">Delete</a></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Kingsley Ijomah</td>
-              <td>kingsley.ijomah@example.com</td>
-              <td><a href="#" class="label label-success">active</a></td>
-              <td>Today 5:60pm - 14/09/2015</td>
-              <td><a href="#" class="label label-danger">Delete</a></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Kingsley Ijomah</td>
-              <td>kingsley.ijomah@example.com</td>
-              <td><a href="#" class="label label-success">active</a></td>
-              <td>Today 5:60pm - 14/09/2015</td>
-              <td><a href="#" class="label label-danger">Delete</a></td>
-            </tr>
+            <% end %>
           </tbody>
         </table>
-
       </div>
     </div>
   </div>
 </div>
-
 <div class="row">
   <footer id="admin-footer" class="clearfix">
-    <div class="pull-left"><b>Copyright </b>&copy; 2015</div>
+    <div class="pull-left"><b>Copyright </b>&copy; 2022</div>
     <div class="pull-right">admin system</div>
   </footer>
 </div>

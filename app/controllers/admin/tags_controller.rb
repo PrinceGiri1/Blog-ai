@@ -1,5 +1,6 @@
 class Admin::TagsController < Admin::ApplicationController
   def index
+    @tag = Tag.new
     @tags = Tag.all.paginate(page: params[:page], per_page: 5).order(id: :desc)
 
   end

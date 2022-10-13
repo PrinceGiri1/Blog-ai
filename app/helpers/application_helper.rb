@@ -10,7 +10,7 @@ module ApplicationHelper
       falsy
     end
   end
-  def publish_status_conversion status, truthy: "Publish", falsy: "Unpublish"
+  def publish_status_conversion status, truthy: "Publish", falsy: "Pending"
     if status
       truthy
     else

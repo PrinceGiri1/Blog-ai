@@ -15,10 +15,15 @@ Rails.application.routes.draw do
     resources :sessions
     resources :messages
     resources :notifications
+    resources :settings
     resources :comments do
       member do
         patch :approve
         patch :disapprove
+      end
+      collection do
+        get :publish
+        get :pending 
       end
    end
   end

@@ -1,6 +1,6 @@
 class Admin::PostsController < Admin::ApplicationController
   def index
-    @posts = Post.all.paginate(page: params[:page], per_page: 2).order(id: :desc)
+    @posts = Post.all.paginate(page: params[:page], per_page: 4).order(id: :desc)
   end
   def show
     @tag_id = Post.friendly.find(params[:id]).tag_ids

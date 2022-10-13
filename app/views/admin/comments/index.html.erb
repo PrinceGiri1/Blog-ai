@@ -1,62 +1,52 @@
 <div id="content">
-  <header class="clearfix">
-    <h2 class="page_title pull-left">All approved</h2>
-    <button type="button" class="btn btn-xs btn-primary pull-right">Create new article</button>
-  </header>
+        <header class="clearfix">
+          <div class="col-xs-5 col-sm-3 col-md-3"><b>All commenters</b></div>
+          <div class="col-xs-7 col-sm-9 col-md-9">
+            <%=link_to "Create New Post", new_admin_post_path, class:"btn btn-xs btn-primary pull-right" %>
+          </div>
+        </header>
 
-  <div class="content-inner">
-    <div class="row search-row">
-    	<div class="col-md-12">
-    		<div class="input-group">
-    			<input type="text" class="form-control search-field" id="search" placeholder="Search">
-    			<span class="input-group-btn">
-    				<button type="button" class="btn btn-primary go">Go!</button>
-    			</span>
-    		</div>
-    	</div>
-    </div>
+        <div class="content-inner">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th class="hidden-xs">Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <%@comments.each do |comment|%>  
+                <td><%= comment.full_name%></td>
+                <td><%= comment.email%></td>
+                <td>
+                  <%if comment.status?%>
+                    <span class="label label-success">
+                    <%= publish_status_conversion(comment.status)%>
+                  <%else%>
+                    <span class="label label-warning">
+                    <%= publish_status_conversion(comment.status)%>
+                  <%end%>    
 
-    <div class="row comments-row">
-      <% @comments.each do |comment| %>
-    	<div class="col-sm-2 col-md-1">
-    		<img class="img-circle hidden-xs" src="https://api.fnkr.net/testimg/70x70/00CED1/FFF/?text=70x70">
-    	</div>
-
-    	<div class="col-sm-10 col-md-11">
-    		<div class="row">
-    			<div class="col-xs-9 col-sm-10 col-md-9">
-    				<b><%= comment.full_name %></b> posted message on <b><%= Post.find_by(id: comment.post_id).title%></b><br>
-
-            <small><%=comment.created_at.strftime("%A %I:%M%P - %d/%m/%Y")%></small>
-    			</div>
-
-    			<div class="col-xs-3 col-sm-2 col-md-3">
-    				<div class="clearfix">
-    					<div class="pull-right comment-age"><%= time_ago(comment.created_at)%></div>
-    				</div>
-    			</div>
-    		</div>
-    		<div class="well well-sm comments-well">
-        	<%= comment.message %>
+                </td>
+                <td><%=comment.created_at.strftime("%d/%m/%Y")%></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
         </div>
-      <div class="clearfix">
-
-      	<div class="pull-right">
-        <% if comment.status %>
-          <%= link_to disapprove_admin_comment_path(comment), data: { 'turbo-method': :patch } do %>
-            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-      			Un-approve
-      		<%end%>
-        <%end%>
-          <%= link_to  admin_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-xs btn-default" do %>
-      		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      			Delete
-      		<%end%>
-      	</div>
       </div>
-    	</div>
-      <%end%>
+      <%= will_paginate @comments %>
+
+      <div class="row">
+        <footer id="admin-footer" class="clearfix">
+          <div class="pull-left"><b>Copyright </b>&copy; 2015</div>
+          <div class="pull-right">admin system</div>
+        </footer>
+      </div>
     </div>
   </div>
 </div>
-<%= will_paginate @comments %>
+
