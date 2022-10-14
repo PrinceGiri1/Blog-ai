@@ -130,11 +130,11 @@ crossorigin="anonymous"></script>
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                     <span class="label label-warning"><%=Notification.count%></span>
                     <ul class="dropdown-menu notif-menu">
-                      <% @notifications&.each do |notification| %>
+                      <% @notifications.first(6).each do |notification| %>
                         <% if notification.notifiable_type == "Comment" %>  
-                            <li><a href="#"><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b></a></li>
+                            <li><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
                         <%else%>
-                          <li><a href="#"><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b></a></li>
+                          <li><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
                         <%end%>
                       <%end%>  
                       <div class="see-all-block">
@@ -143,24 +143,17 @@ crossorigin="anonymous"></script>
                     </ul>
                   </a>
                 </li>
-
-                <li class="fixed-width">
-                  <a href="#">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    <span class="label label-message">3</span>
-                  </a>
-                </li>
                 <li>
                   <% if logged_in? %>
-                  <%= link_to admin_session_path(:id), data: { "turbo-method": :delete }  do%>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                  log out
-                  <%end%>
+                    <%= link_to admin_session_path(:id), data: { "turbo-method": :delete }  do%>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    log out
+                    <%end%>
                   <% else %>
-                  <%= link_to new_admin_session_path do%>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                  sign in
-                  <%end%>
+                    <%= link_to new_admin_session_path do%>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    sign in
+                    <%end%>
                   <% end %>
                 </li>
               </ul>

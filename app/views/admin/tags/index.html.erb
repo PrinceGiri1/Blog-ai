@@ -44,7 +44,7 @@
                   <%= link_to "Delete", :disabled => tag.in_use?, class:"btn btn-xs btn-danger disabled"%>
                 <% else %>
                   <%= link_to "Edit", edit_admin_tag_path(tag), class:"btn btn-xs btn-warning"%>
-                  <%= link_to "Delete", admin_tag_path(tag), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-xs btn-danger disabled"%>
+                  <%= link_to "Delete", admin_tag_path(tag), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-xs btn-danger "%>
                 <% end %>
               </td>
             </tr>

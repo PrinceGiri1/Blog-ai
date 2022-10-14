@@ -13,7 +13,7 @@ class Admin::SessionsController < Admin::ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:notice] = "Login Successfully"
-      redirect_to admin_users_path
+      redirect_to admin_path
     else
       flash[:alert] = 'Invalid Email or Password'
       redirect_to new_admin_session_path
