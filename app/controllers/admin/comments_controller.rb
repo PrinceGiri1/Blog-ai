@@ -4,6 +4,7 @@ class Admin::CommentsController < Admin::ApplicationController
   end
   def show
     @comment = Comment.find(params[:id])
+    @comment.notifications.update(status: true)
   end
   def destroy
     @comment = Comment.find(params[:id])

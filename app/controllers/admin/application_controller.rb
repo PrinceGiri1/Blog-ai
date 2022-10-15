@@ -18,5 +18,6 @@ class Admin::ApplicationController < ActionController::Base
   end
   def notification_view
     @notifications = Notification.all.order(id: :desc)
+    @pending_notifications = Notification.where(status: false)
   end
 end

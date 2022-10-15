@@ -128,14 +128,22 @@ crossorigin="anonymous"></script>
 
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-                    <span class="label label-warning"><%=Notification.count%></span>
+                    <span class="label label-warning"><%=@pending_notifications.count%></span>
                     <ul class="dropdown-menu notif-menu">
                       <% @notifications.first(6).each do |notification| %>
-                        <% if notification.notifiable_type == "Comment" %>  
-                            <li><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
+                        <%if notification.status?%>
+                          <% if notification.notifiable_type == "Comment" %>  
+                              <li class="checked-notif"><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
+                          <%else%>
+                            <li class="checked-notif"><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
+                           <%end%>
                         <%else%>
-                          <li><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
-                        <%end%>
+                          <% if notification.notifiable_type == "Comment" %>  
+                              <li class="unchecked-notif"><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
+                          <%else%>
+                            <li class="unchecked-notif"><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
+                          <%end%>
+                        <%end%>   
                       <%end%>  
                       <div class="see-all-block">
                         <%=link_to "See all",admin_notifications_path%>

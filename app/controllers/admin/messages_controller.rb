@@ -4,6 +4,7 @@ class Admin::MessagesController < Admin::ApplicationController
   end
   def show
     @message = Message.find(params[:id])
+    @message.notifications.update(status: true)
   end
   def destroy
     @message = Message.find(params[:id])

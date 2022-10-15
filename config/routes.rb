@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  root 'home#index'
+  resources :home 
+  resources :comments, only: :create 
+  
+  
+  
   get "login", :to => "admin/sessions#new", as: :login
-
-  root 'welcome#index'
   get 'admin', to: 'admin/users#home'
-  get 'welcome/new', to: 'welcome#new', as: 'new_message'
-  post 'welcome', to: 'welcome#create'
-
-
+  
   namespace :admin do
     resources :users
     resources :posts

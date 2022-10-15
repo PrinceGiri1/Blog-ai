@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_14_040542) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_14_090910) do
   create_table "comments", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_040542) do
     t.integer "notifiable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
+    t.boolean "status", default: false
   end
 
   create_table "post_tags", force: :cascade do |t|
