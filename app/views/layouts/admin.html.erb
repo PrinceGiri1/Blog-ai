@@ -125,36 +125,35 @@ crossorigin="anonymous"></script>
               <ul class="pull-right">
                 <li id="welcome" class="hidden-xs">Welcome to your administration area</li>
                 <li class="fixed-width dropdown">
+
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                     <span class="label label-warning"><%=Notification.count%></span>
                     <ul class="dropdown-menu notif-menu">
-                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
-                      <li><a href="#"><b>John Doe</b> sent a message <b>2 hours ago</b></a></li>
-                      <li><a href="#"><b>George Doe</b> commented on <b>Little Joy for everything</b></a></li>
+                      <% @notifications.first(6).each do |notification| %>
+                        <% if notification.notifiable_type == "Comment" %>  
+                            <li><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
+                        <%else%>
+                          <li><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
+                        <%end%>
+                      <%end%>  
                       <div class="see-all-block">
-                        <%=link_to "See all", "#"%>
+                        <%=link_to "See all",admin_notifications_path%>
                       </div>
                     </ul>
                   </a>
                 </li>
-
-                <li class="fixed-width">
-                  <a href="#">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                  </a>
-                </li>
                 <li>
                   <% if logged_in? %>
-                  <%= link_to admin_session_path(:id), data: { "turbo-method": :delete }  do%>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                  log out
-                  <%end%>
+                    <%= link_to admin_session_path(:id), data: { "turbo-method": :delete }  do%>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    log out
+                    <%end%>
                   <% else %>
-                  <%= link_to new_admin_session_path do%>
-                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                  sign in
-                  <%end%>
+                    <%= link_to new_admin_session_path do%>
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    sign in
+                    <%end%>
                   <% end %>
                 </li>
               </ul>
