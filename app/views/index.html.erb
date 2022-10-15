@@ -1,0 +1,56 @@
+<br/><br/>
+<div class="container">
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div class="col-md-8">
+      <%@posts.each do |post|%>
+        <div class="card mb-3">
+          <%if post.thumbnail?%>
+            <%= image_tag(post.thumbnail.url,:size => "737x300") %>
+          <%end%>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title%></h5>
+            <p class="card-text"><%= post.content%></p>
+            <p class="card-text"><small class="text-muted"><%=time_ago(post.created_at)%></small></p>
+          </div>
+        </div>
+      <%end%>
+  </div>
+  <div class="col-12 col-md-4">
+    
+    <div class="card">
+      <div class="card-body">
+        <h5>About Blog</h5>
+        <hr/>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate amet ullam excepturi odio impedit saepe nemo repellendus, aut suscipit voluptas omnis quas quisquam accusamus illo laboriosam rerum, totam ea eaque.</p>
+      </div>
+    </div>
+     <br/>
+    <div class="card">
+      <div class="card-body">
+        <h5>Popular Posts</h5>
+        <hr/>
+        <%@posts.each do |post|%>
+        <ul class="popular-posts">
+          <li>
+            <%=link_to home_path(post) do%>
+              <%=post.title%>
+            <%end%>
+          </li>
+        </ul>
+        <%end%>
+      </div>
+    </div>
+    
+    <br/>
+    <div class="card">
+      <div class="card-body">
+        <h5>Présentation</h5>
+        <hr/>
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/ZEyAs3NWH4A" title="YouTube video" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
