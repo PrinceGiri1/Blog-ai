@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     resources :tags
     resources :sessions
     resources :messages
-    resources :notifications
+    resources :notifications do 
+      member do 
+        get :unread
+      end
+    end
     resources :settings
     resources :comments do
       member do

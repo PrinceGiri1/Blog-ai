@@ -7,17 +7,4 @@ class HomeController < ApplicationController
     @comment = @post.comments.build
     @tags = @post.tags
   end
-  
-  
 end
-
-
-
-
-
-
-
-
-
-
-
