@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 	def create
-     @comment = Comment.new(comment_params)
-     @comment.save!
-     redirect_to "/"
+    @comment = Comment.new(comment_params)
+    @comment.save!
+    redirect_to "/"
    end
 
 	def comment_params
