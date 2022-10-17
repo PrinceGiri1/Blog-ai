@@ -1,5 +1,8 @@
 class Admin::SettingsController < Admin::ApplicationController
-	def new
+	def index
+    @settings = Setting.all
+  end
+  def new
     @setting = Setting.new
   end
   def create
@@ -12,6 +15,6 @@ class Admin::SettingsController < Admin::ApplicationController
   end
   private
   	def setting_params
-    	params.require(:setting).permit(:blog_name, :post_per_page, :if_maintenance)
+    	params.require(:setting).permit(:blog_name, :post_per_page, :if_maintenance, :about)
   	end
 end

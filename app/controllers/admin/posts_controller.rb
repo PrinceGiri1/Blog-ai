@@ -24,10 +24,10 @@ class Admin::PostsController < Admin::ApplicationController
   def edit
     @post = Post.friendly.find(params[:id])
   end
+
   def update
     @post = Post.friendly.find(params[:id])
-
-    params[:people].each do |tag_ids|
+    params[:tag_ids]&.each do |tag_ids|
       @post.post_tags.create(tag_id: tag_ids)
     end
     if @post.update(post_params)
@@ -44,6 +44,6 @@ class Admin::PostsController < Admin::ApplicationController
   end
 private
   def post_params
-    params.require(:post).permit(:title, :content, :name, :is_publish, :thumbnail, :intro)
+    params.require(:post).permit(:title, :content, :name, :is_publish, :thumbnail, :intro, tag_ids: [])
   end
 end

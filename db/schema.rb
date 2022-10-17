@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_14_090910) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_17_113757) do
   create_table "comments", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_090910) do
     t.boolean "if_maintenance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "about"
   end
 
   create_table "tags", force: :cascade do |t|

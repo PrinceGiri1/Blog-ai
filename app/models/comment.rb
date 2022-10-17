@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  validates :full_name, :email, :message, presence:true
   belongs_to :post
   has_many :notifications, as: :notifiable
   after_create :notify
@@ -6,4 +7,6 @@ class Comment < ApplicationRecord
   def notify
     self.notifications.create
   end
+  
+
 end
