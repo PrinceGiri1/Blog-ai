@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ArticlesController < ApplicationController
   def index
     @posts = Post.all.paginate(page: params[:page], per_page: 5).order(id: :desc)
   end

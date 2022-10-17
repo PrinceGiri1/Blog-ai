@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  resources :home 
+  root 'articles#index'
+  resources :articles 
   resources :comments, only: :create 
   
   
