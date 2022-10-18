@@ -27,9 +27,6 @@ class Admin::PostsController < Admin::ApplicationController
 
   def update
     @post = Post.friendly.find(params[:id])
-    params[:tag_ids]&.each do |tag_ids|
-      @post.post_tags.create(tag_id: tag_ids)
-    end
     if @post.update(post_params)
       redirect_to admin_posts_path
     else

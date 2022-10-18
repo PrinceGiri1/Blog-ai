@@ -13,11 +13,15 @@
             <%= f.text_field :title, class: "form-control"%>
           </div>
           <div class="form-group">
-            <%= f.select :tag_ids, Tag.all.collect { |t| [t.name, t.id]}, {prompt: "Select a Tag"},  id: "tag_select", multiple: 'multiple' %>
+            <%= f.label :Introduction%>
+            <%= f.text_field :intro, class: "form-control"%>
           </div>
           <div class="form-group">
             <%= f.label :Content, class:""%>
             <%= f.text_area :content, :class => "tinymce", :rows => 10, :cols => 50, placeholder: "Content" %>
+          </div>
+          <div class="form-group">
+            <%= f.select :tag_ids, Tag.all.collect { |t| [t.name, t.id]}, {prompt: "Select a Tag"},  id: "tag_select", multiple: 'multiple',class: "form-control" %>
           </div>
           <div class="checkbox">
             <%= f.label :Publish %>

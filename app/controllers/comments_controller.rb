@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 	def create
-		@comment = Comment.new(comment_params)
+		@comment = Comment.create(comment_params)
 		@comment.save!
-		redirect_to home_path(@comment.post_id)
+		redirect_to article_path(@comment.post_id)
 	 end
 
 	def comment_params

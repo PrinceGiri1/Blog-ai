@@ -4,6 +4,7 @@ require 'faker'
    first_name: Faker::Name.first_name,
    last_name: Faker::Name.last_name,
    about:  Faker::Lorem.paragraphs,
+   avatar: Faker::Avatar.image,
    email: Faker::Internet.email,
    password: "12345")
 
@@ -11,7 +12,8 @@ require 'faker'
     title: Faker::Job.title,
     content: Faker::Lorem.sentences,
     is_publish: [true, false].sample,
-    user_id: user.id
+    user_id: user.id,
+    intro: Faker::Lorem.paragraph_by_chars(number: 120, supplemental: false)
   )
   tag = Tag.create(
     name: Faker::Books::CultureSeries.book

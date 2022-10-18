@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   root 'articles#index'
-  resources :articles 
-  resources :comments, only: :create 
-  
-  
-  
+  resources :articles do
+    resources :comments, only: :create 
+  end
   get "login", :to => "admin/sessions#new", as: :login
   get 'admin', to: 'admin/users#home'
   
@@ -15,7 +13,7 @@ Rails.application.routes.draw do
     resources :sessions
     resources :messages
     resources :notifications do 
-      member do 
+      collection do 
         get :unread
       end
     end

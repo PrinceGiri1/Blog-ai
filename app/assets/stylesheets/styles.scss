@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 .search-bar {
   position: relative;
   top: 8px;
@@ -398,3 +402,17 @@
   border-bottom: none !important;
 }
 
+.flash-notification {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  padding: 30px;
+  box-shadow: 0 0 16px -8px #333;
+  border-radius: 13px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 52%;
+}

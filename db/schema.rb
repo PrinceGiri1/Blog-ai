@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_113757) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_18_110145) do
   create_table "comments", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_113757) do
     t.string "slug"
     t.text "intro"
     t.string "thumbnail"
+    t.integer "view_count", default: 0
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
