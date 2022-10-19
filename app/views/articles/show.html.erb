@@ -67,7 +67,7 @@
         </div>
         <div class="comment">
         <%- @post.comments.each  do|comment|%>
-          <%if comment.full_name?%>
+          <%if comment.full_name? && comment.status?%>
           <div class="user-banner">
             <div class="user">
               <div class="avatar">

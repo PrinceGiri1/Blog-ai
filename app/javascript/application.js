@@ -9,3 +9,6 @@ $(document).ready(function() {
 		$('#side-menu').toggleClass('hidden-xs');
 	});
 });
+$('.flash-notification').on('click',function(){
+  $(this).toggleClass('active');
+});
