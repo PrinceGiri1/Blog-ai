@@ -54,6 +54,8 @@ GEM
     activerecord (7.0.3.1)
       activemodel (= 7.0.3.1)
       activesupport (= 7.0.3.1)
+    activerecord-import (1.4.1)
+      activerecord (>= 4.2)
     activestorage (7.0.3.1)
       actionpack (= 7.0.3.1)
       activejob (= 7.0.3.1)
@@ -68,6 +70,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    arel (9.0.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
@@ -149,6 +152,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
+    pg_search (1.0.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -252,6 +259,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-import
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
@@ -262,6 +270,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mini_magick (~> 4.3)
+  pg_search (~> 1.0, >= 1.0.5)
   pry
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)

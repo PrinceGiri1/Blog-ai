@@ -4,6 +4,7 @@
 <div class="row">
   <div class="col-md-8">
       <%@posts.order(id: :desc).each do |post|%>
+        <%if post.is_publish? %>
         <div class="card mb-3">
           <%if post.thumbnail?%>
             <%= image_tag(post.thumbnail.url,:size => "737x300") %>
@@ -16,6 +17,7 @@
             <p class="card-text"><small class="text-muted"><%=time_ago(post.created_at)%></small></p>
           </div>
         </div>
+        <% end%>
       <%end%>
   </div>
   <div class="col-12 col-md-4">
@@ -49,7 +51,7 @@
         <h5>Présentation</h5>
         <hr/>
       <div class="ratio ratio-16x9">
-        <iframe src="https://www.youtube.com/embed/ZEyAs3NWH4A" title="YouTube video" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/watch?v=_E8VZiEivIU" title="YouTube video" allowfullscreen></iframe>
       </div>
     </div>
   </div>
