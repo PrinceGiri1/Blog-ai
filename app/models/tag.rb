@@ -1,6 +1,4 @@
 class Tag < ApplicationRecord
-  include PgSearch::Model
-  multisearchable against: [:name]
   has_many :post_tags
   has_many :post, through: :post_tags
   validates :name, presence:true

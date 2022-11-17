@@ -14,10 +14,15 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </ul>
-        <form class="d-flex search-bar">
+       <!--  <form class="d-flex search-bar">
           <input class="form-control me-2" type="search" placeholder="Search article" aria-label="Search">
           <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        </form> -->
+        <%= form_tag search_articles_path, method: :get, :class => 'd-flex search-bar' do %>
+          <%= text_field_tag :search, nil, placeholder: "Search your favourite ...", :class => 'form-control me-2' %>
+          <%= submit_tag "submit", style: "display: none;", class:"btn btn-outline-success", :class => 'fa fa-search' %>
+        <% end %>
+        
       </div>
     </div>
   </nav>

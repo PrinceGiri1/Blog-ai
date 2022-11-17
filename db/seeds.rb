@@ -1,4 +1,6 @@
 require 'faker'
+  puts "Start Createing Seed Data."
+
 10.times do
   user = User.create(
    first_name: Faker::Name.first_name,
@@ -36,4 +38,12 @@ require 'faker'
     )
     notif = [@commment, @message].sample
     @notification = Notification.create(notifiable: notif, notifiable_type: notif.class.name )
+    puts "Succesfully Create"
+
 end
+  Setting.create!(
+    blog_name: "Blog AI",
+    post_per_page: 5,
+    if_maintenance: false,
+    about: "Blog AI is most famous and tranding website for fresher, Here you can learn Mechine Learning, Data Science, Data visualization and etc...")
+    puts "Done"

@@ -45,7 +45,9 @@ gem "redis", "~> 4.0"
  gem 'carrierwave', '~> 2.0'
  gem 'mini_magick', '~> 4.3'
  gem 'tinymce-rails'
- gem 'pg_search', '~> 1.0', '>= 1.0.5'
+ gem 'pg'
+ gem 'pg_search', '~> 2.3', '>= 2.3.6'
+ 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'articles#index'
   resources :articles do
+    collection do 
+      get :search
+    end
     resources :comments, only: :create 
   end
   get "login", :to => "admin/sessions#new", as: :login
