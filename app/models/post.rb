@@ -13,7 +13,6 @@ class Post < ApplicationRecord
 
 
   def self.perform_search(keyword)
-    binding.pry
     if keyword.present?
       Post.search(keyword)
     else

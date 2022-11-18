@@ -2,7 +2,6 @@ class Admin::TagsController < Admin::ApplicationController
   def index
     @tag = Tag.new
     @tags = Tag.all.paginate(page: params[:page], per_page: 5).order(id: :desc)
-
   end
   def new
     @tag = Tag.new
@@ -33,8 +32,6 @@ class Admin::TagsController < Admin::ApplicationController
     @tag.destroy
     redirect_to admin_tags_path
   end
-
-
   private
     def tag_params
       params.require(:tag).permit(:name)

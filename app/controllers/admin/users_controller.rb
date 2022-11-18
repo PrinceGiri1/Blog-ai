@@ -5,7 +5,6 @@ class Admin::UsersController < Admin::ApplicationController
   def show
     @user = User.find(params[:id])
   end
-
   def edit
     @user = User.find(params[:id])
   end
@@ -23,16 +22,9 @@ class Admin::UsersController < Admin::ApplicationController
     @posts = Post.all.paginate(page: params[:page], per_page: 5 ).order(id: :desc)
     @comments = Comment.all.paginate(page: params[:page], per_page: 3).order(id: :desc)
   end
-
-
-
-
-
-
   private
     def user_params
       params.require(:user).permit(:first_name, :last_name, :about, :email, :password, :avatar)
     end
-
-
 end
+
