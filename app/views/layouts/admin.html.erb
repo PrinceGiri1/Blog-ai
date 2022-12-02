@@ -134,9 +134,9 @@
                       <ul class="dropdown-menu notif-menu">
                         <% @notifications.first(6).each do |notification| %>
                           <% if notification.notifiable_type == "Comment" %>  
-                            <li class="<%= notification.status?? 'checked-notif' : 'unchecked-notif'%>"><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
+                            <li class="<%= notification&.status?? 'checked-notif' : 'unchecked-notif'%>"><%=link_to admin_comment_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> commented on <b><%= Post.find_by(id: notification.notifiable.post_id).title%></b><%end%></li>
                           <%else%>
-                            <li class="<%= notification.status?? 'checked-notif' : 'unchecked-notif'%>"><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
+                            <li class="<%= notification&.status?? 'checked-notif' : 'unchecked-notif'%>"><%=link_to admin_message_path(notification.notifiable) do%><b><%= notification.notifiable.full_name %></b> sent a message <b><%= time_ago(notification.notifiable.created_at)%></b><%end%></li>
                           <%end%>
                         <%end%>  
                         <div class="see-all-block">
