@@ -10,6 +10,7 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  config.hosts << "princegiri1-glowing-tribble-jx59pj97rwfr4-3000.preview.app.github.dev"
 
   # Show full error reports.
   config.consider_all_requests_local = true
