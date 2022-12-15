@@ -37,6 +37,8 @@ Rails.application.configure do
   config.active_storage.service = :test
 
   config.action_mailer.perform_caching = false
+  config.hosts << "princegiri1-glowing-tribble-jx59pj97rwfr4-3000.preview.app.github.dev"
+
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the

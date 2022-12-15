@@ -39,6 +39,8 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+  config.hosts << "princegiri1-glowing-tribble-jx59pj97rwfr4-3000.preview.app.github.dev"
+
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
